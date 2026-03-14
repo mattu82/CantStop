@@ -40,7 +40,14 @@ internal class Config
     [JsonInclude] internal float musicvol = 1;
     [JsonInclude] internal float sfxvol = 1;
 
-
+    public Config()
+    {
+        alwaysshowstop = false;
+        autooption = false;
+        autoroll = false;
+        autostop = false;
+        fps = 0;
+    }
     internal Config(bool alwaysshowstop, bool autooption, bool autoroll, bool autostop, int fps)
     {
         this.alwaysshowstop = alwaysshowstop;

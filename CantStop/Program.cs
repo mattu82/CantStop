@@ -30,7 +30,7 @@ internal class Program
     internal static string Version = (Assembly.GetExecutingAssembly().GetName().Version ?? new Version()).ToString();
     internal static string Appdata = GetFolderPath(SpecialFolder.LocalApplicationData) + @"\CantStop";
     internal static string Configfile = "CantStop.config.json";
-    internal static Config Cfg = Config.FromFile(Configfile) ?? new Config();
+    internal static Config Cfg = Config.FromConfigFile();
     internal static bool Terminate;
     internal static DateTime Errtime;
 

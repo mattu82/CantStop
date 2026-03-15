@@ -1,4 +1,5 @@
 ﻿// ReSharper disable IdentifierTypo
+// ReSharper disable RedundantDefaultMemberInitializer
 // ReSharper disable StringLiteralTypo
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,14 +15,14 @@ internal class Config
     [JsonInclude] internal string[] playercolor = ["#FF0000", "#FFFF00", "#00FF00", "#0000FF"];
     [JsonInclude] internal bool shuffle = true;
     [JsonInclude] internal bool showodds;
-    [JsonInclude] internal bool alwaysshowstop;
-    [JsonInclude] internal bool autooption;
-    [JsonInclude] internal bool autoroll;
-    [JsonInclude] internal bool autostop;
-    [JsonInclude] internal bool backupconfigs = true;
-    [JsonInclude] internal int w = 720;
-    [JsonInclude] internal int h = 720;
-    [JsonInclude] internal int fps;
+    [JsonInclude] internal bool alwaysshowstop = true;
+    [JsonInclude] internal bool autooption = false;
+    [JsonInclude] internal bool autoroll = false;
+    [JsonInclude] internal bool autostop = false;
+    [JsonInclude] internal bool backupconfigs = false;
+    [JsonInclude] internal int w = 512;
+    [JsonInclude] internal int h = 512;
+    [JsonInclude] internal int fps = 0;
     [JsonInclude] internal string music = @"resources\music.mp3";
     [JsonInclude] internal string roll = @"resources\roll.wav";
     [JsonInclude] internal string fail = @"resources\fail.wav";
@@ -40,26 +41,19 @@ internal class Config
     [JsonInclude] internal float musicvol = 1;
     [JsonInclude] internal float sfxvol = 1;
 
-    public Config()
+    internal static Config FromConfigFile()
     {
-        alwaysshowstop = false;
-        autooption = false;
-        autoroll = false;
-        autostop = false;
-        fps = 0;
-    }
-    internal Config(bool alwaysshowstop, bool autooption, bool autoroll, bool autostop, int fps)
-    {
-        this.alwaysshowstop = alwaysshowstop;
-        this.autooption = autooption;
-        this.autoroll = autoroll;
-        this.autostop = autostop;
-        this.fps = fps;
-    }
-
-    internal static Config? FromFile(string filename)
-    {
-        return JsonSerializer.Deserialize<Config>(new StreamReader(filename).ReadToEnd());
+        if (!File.Exists(Program.Configfile))
+        {
+            var retval = new Config();
+            retval.SaveChanges();
+            return retval;
+        }
+        else
+        {
+            var retval =  JsonSerializer.Deserialize<Config>(new StreamReader(Program.Configfile).ReadToEnd());
+            return retval ?? throw new Exception("Could not deserialize config file.");
+        }
     }
 
     internal void AddPlayer()

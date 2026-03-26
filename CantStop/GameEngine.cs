@@ -145,6 +145,7 @@ internal class GameEngine
     internal List<GameLogSummary> continuelogs = [];
 
     internal Config? cfgbk;
+    internal bool showstats = true;
 
     internal GameEngine() {
         UpdateLogs();
@@ -623,7 +624,7 @@ internal class GameEngine
         _gevi+= .5;
     }
 
-        
+
 }
 
 internal static class GameEngineExtensions

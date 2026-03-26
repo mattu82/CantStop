@@ -98,8 +98,8 @@ internal static class ScreenMain
                 {
                     onclicked = () => { ge.InitReplay(ge.gamelog); },
                     isactive = () => ge.gameover,
-                    draw = () => { gfx.buttons["Replay"].draw(" VIEW\nREPLAY"); },
-                    wasclicked = () => gfx.buttons["Replay"].wasclicked(0)
+                    draw = () => { gfx.buttons["Replay"].draw(new Tuple<string, int>("View Replay",0)); },
+                    wasclicked = () => gfx.buttons["Replay"].wasclicked(new Tuple<string, int>("View Replay",0))
                 },
 
                 new ButtonMap
@@ -108,6 +108,14 @@ internal static class ScreenMain
                     isactive = () => ge.replaylog is not null,
                     draw = () => { gfx.buttons["Stop"].draw("Skip to End"); },
                     wasclicked = () => gfx.buttons["Stop"].wasclicked(0)
+                },
+
+                new ButtonMap
+                {
+                    onclicked = () => { ge.showstats = !ge.showstats; },
+                    isactive = () => ge.gameover,
+                    draw = () => { gfx.buttons["Stats"].draw(new Tuple<string, int>(ge.showstats ? "Hide Stats" : "Show Stats",0)); },
+                    wasclicked = () => gfx.buttons["Stats"].wasclicked(new Tuple<string, int>(ge.showstats ? "Hide Stats" : "Show Stats",0))
                 }
 
 
@@ -167,7 +175,7 @@ internal static class ScreenMain
                 },
 
                 new Display {
-                    isactive = () => ge.gameover,
+                    isactive = () => ge is { gameover: true, showstats: true },
                     draw = () => { gfx.DrawGameOver(ge.playerstats);  }
                 }
             ]

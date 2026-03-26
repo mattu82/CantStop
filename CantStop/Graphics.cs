@@ -91,12 +91,13 @@ internal class Graphics
             ScaledButton("GSlider",ButtonType.Slider,128,117,100,17,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("BSlider",ButtonType.Slider,128,135,100,17,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("ContinueMenu",ButtonType.Text,10,128,236,10,[GetColor(Program.Cfg.textcolor)]),
-            ScaledButton("Replay",ButtonType.Button,128,228,24,24,[GetColor(Program.Cfg.rollcolor), GetColor(Program.Cfg.hilighttextcolor)]),
+            ScaledButton("Replay",ButtonType.Text,128,248,48,8,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("GamelogMenu",ButtonType.List,8,8,240,8,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("Save",ButtonType.Text,8,0,258,8,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("Music",ButtonType.Slider,87,167,100,9,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("Sfx",ButtonType.Slider,87,177,100,9,[GetColor(Program.Cfg.textcolor)]),
-            ScaledButton("GamelogDelMenu",ButtonType.List,216,8,32,8,[GetColor(Program.Cfg.stopcolor)])
+            ScaledButton("GamelogDelMenu",ButtonType.List,216,8,32,8,[GetColor(Program.Cfg.stopcolor)]),
+            ScaledButton("Stats",ButtonType.Text,80, 248, 48, 8, [GetColor(Program.Cfg.textcolor)])
         ];
     }
 

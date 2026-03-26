@@ -76,7 +76,17 @@ internal class Button
                 draw = tuple =>
                 {
                     var t = (Tuple<string, int>)tuple;
-                    DrawText(t.Item1, x, y + t.Item2 * h, h, colors[0]);
+
+                    //Hacky way to do dynamic color for now
+                    if (t.Item1.StartsWith('0'))
+                    {
+                        DrawText(t.Item1.Replace("0", "No"), x, y + t.Item2 * h, h, Graphics.GetColor(Program.Cfg.stopcolor));
+                    }
+                    else
+                    {
+                        DrawText(t.Item1, x, y + t.Item2 * h, h, colors[0]);
+                    }
+
                 };
                 wasclicked = tuple =>
                 {

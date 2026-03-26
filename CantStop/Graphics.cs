@@ -97,7 +97,8 @@ internal class Graphics
             ScaledButton("Music",ButtonType.Slider,87,167,100,9,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("Sfx",ButtonType.Slider,87,177,100,9,[GetColor(Program.Cfg.textcolor)]),
             ScaledButton("GamelogDelMenu",ButtonType.List,216,8,32,8,[GetColor(Program.Cfg.stopcolor)]),
-            ScaledButton("Stats",ButtonType.Text,80, 248, 48, 8, [GetColor(Program.Cfg.textcolor)])
+            ScaledButton("Stats",ButtonType.Text,80, 248, 48, 8, [GetColor(Program.Cfg.textcolor)]),
+            ScaledButton("Markers",ButtonType.Text,192,232,64,8,[GetColor(Program.Cfg.textcolor)])
         ];
     }
 

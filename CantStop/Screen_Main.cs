@@ -116,6 +116,14 @@ internal static class ScreenMain
                     isactive = () => ge.gameover,
                     draw = () => { gfx.buttons["Stats"].draw(new Tuple<string, int>(ge.showstats ? "Hide Stats" : "Show Stats",0)); },
                     wasclicked = () => gfx.buttons["Stats"].wasclicked(new Tuple<string, int>(ge.showstats ? "Hide Stats" : "Show Stats",0))
+                },
+
+                new ButtonMap
+                {
+                    onclicked = () => { },
+                    isactive = () => ge is { showroll: true, replaylog: null },
+                    draw = () => { gfx.buttons["Markers"].draw(new Tuple<string, int>(3 - ge.nextmarkers.Count(x => x != -1) + " Marker" + (ge.nextmarkers.Count(x => x != -1) == 2 ? "" : "s") + " Left",0)); },
+                    wasclicked = () => gfx.buttons["Stats"].wasclicked(new Tuple<string, int>(3 - ge.nextmarkers.Count(x => x != -1) + " Marker" + (ge.nextmarkers.Count(x => x != -1) == 2 ? "" : "s") + " Left",0))
                 }
 
 

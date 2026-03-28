@@ -21,6 +21,8 @@
 //online, twitch
 
 using System.Reflection;
+using Velopack;
+using Velopack.Sources;
 using static System.Environment;
 
 namespace CantStop;
@@ -28,14 +30,17 @@ namespace CantStop;
 internal class Program
 {
     internal static string Version = (Assembly.GetExecutingAssembly().GetName().Version ?? new Version()).ToString();
-    internal static string Appdata = GetFolderPath(SpecialFolder.LocalApplicationData) + @"\CantStop";
+    internal static string LogPath = GetFolderPath(SpecialFolder.LocalApplicationData) + @"\CantStopLogs";
     internal static string Configfile = "CantStop.config.json";
     internal static Config Cfg = Config.FromConfigFile();
     internal static bool Terminate;
     internal static DateTime Errtime;
 
-    private static void Main()
+    private static async Task Main()
     {
+        VelopackApp.Build().Run();
+        await CheckForUpdates();
+
         var ge = new GameEngine();
         var gfx = new Graphics();
 
@@ -119,13 +124,16 @@ internal class Program
             {
                 if (!loggederror)
                 {
-                    using (var fout = new StreamWriter("ErrorLog.txt", true))
+                    await using (var fout = new StreamWriter(Path.Combine(LogPath,"ErrorLog.txt"), true))
                     {
-                        fout.WriteLine("--Error logged at " + DateTime.Now + "--");
-                        fout.WriteLine(e.Message);
+                        await fout.WriteLineAsync("--Error logged at " + DateTime.Now + "--");
+                        await fout.WriteLineAsync(e.Message);
                         if (e.StackTrace is not null)
-                            fout.WriteLine(e.StackTrace);
-                        fout.WriteLine("--End log--");
+                        {
+                            await fout.WriteLineAsync(e.StackTrace);
+                        }
+
+                        await fout.WriteLineAsync("--End log--");
                     }
                     Errtime = DateTime.Now;
                     loggederror = true;
@@ -151,6 +159,21 @@ internal class Program
         Graphics.Close();
     }
 
+    private static async Task CheckForUpdates()
+    {
+        try
+        {
+            var mgr = new UpdateManager(new GithubSource("https://github.com/mattu82/CantStop", string.Empty, false));
+            var newVersion = await mgr.CheckForUpdatesAsync();
+            if (newVersion is null) return;
+            await mgr.DownloadUpdatesAsync(newVersion);
+            mgr.ApplyUpdatesAndRestart(newVersion);
+        }
+        catch
+        {
+            // ignored
+        }
+    }
 }
 
 internal static class Extensions

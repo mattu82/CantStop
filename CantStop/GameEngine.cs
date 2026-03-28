@@ -78,7 +78,7 @@ internal class GameLog
 
     internal void Dump()
     {
-        var logdir = Program.Appdata + @"\GameLogs"; 
+        var logdir = Program.LogPath + @"\GameLogs"; 
         Directory.CreateDirectory(logdir);
 
 
@@ -156,8 +156,8 @@ internal class GameEngine
         replaylogs = [];
         continuelogs = [];
 
-        if (!Directory.Exists(Program.Appdata + @"\GameLogs")) return;
-        foreach (var log in Directory.GetFiles(Program.Appdata + @"\GameLogs", "*.json").OrderByDescending(File.GetLastWriteTime))
+        if (!Directory.Exists(Program.LogPath + @"\GameLogs")) return;
+        foreach (var log in Directory.GetFiles(Program.LogPath + @"\GameLogs", "*.json").OrderByDescending(File.GetLastWriteTime))
         {
             var tmp = GameLogSummary.FromFile(log);
 

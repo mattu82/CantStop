@@ -2,23 +2,21 @@
 // ReSharper disable StringLiteralTypo
 //TODO:
 //
-//Github, vmware
+//Ideas for future updates:
 //
-//final refactor (use refresher?)
-//----
-//list button can be altered for checklist and radio list
+//Nonfunctional:
+//update button to use dynamic colors (instead of using current hacky way)
+//Use list button for checklist and radio list
 //
-//how to play
-//
-//advanced option & palette screen
-//Config object positions
-//
-//player profiles
-//
-//AI
-//texture graphics
-//xl version
-//online, twitch
+//Functional:
+//Add how to play screen
+//Add advanced option & palette screen (currently need to manually edit config file)
+//Add ability to configure object positions (ex option list, dice, buttons)
+//Add player profiles
+//Add AI players
+//Use texture graphics
+//Implement xl version (for 5+ players, roll 3 dice)
+//Add ability to play online, possibly with twitch viewers
 
 using System.Reflection;
 using Velopack;

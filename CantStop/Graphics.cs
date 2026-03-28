@@ -353,7 +353,7 @@ internal class Graphics
     {
         DrawScaledPoly(128, 128, 8, 128, (float)22.5, Program.Cfg.boardcolor);
         DrawScaledText("CAN'T\nSTOP", 64, 85, 42, Program.Cfg.hilighttextcolor);
-        DrawScaledText("v" + Program.Version, 77, 240, 8, Program.Cfg.textcolor);
+        DrawScaledText("v" + Program.Version, 152, 240, 8, Program.Cfg.textcolor);
     }
 
     internal void DrawSetup()

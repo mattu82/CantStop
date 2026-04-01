@@ -16,10 +16,10 @@ internal class Display
     internal required Action draw;
 }
 
-internal class SoundMap
+internal class Trigger
 {
     internal required Func<bool> wastriggered;
-    internal required Action play;
+    internal required Action action;
 }
 
 internal class Screen
@@ -27,7 +27,7 @@ internal class Screen
     internal string id = string.Empty;
     internal List<ButtonMap> buttons = [];
     internal List<Display> displays = [];
-    internal List<SoundMap> sounds = [];
+    internal List<Trigger> triggers = [];
 }
 
 internal static class Screens

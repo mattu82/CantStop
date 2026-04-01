@@ -129,26 +129,26 @@ internal static class ScreenMain
 
 
             ],
-            sounds = [
-                new SoundMap{
+            triggers = [
+                new Trigger{
                     wastriggered = ge.ReplayTimerUp,
-                    play = ge.StepReplay
+                    action = ge.StepReplay
                 },
-                new SoundMap{
+                new Trigger{
                     wastriggered = () => ge.triggerwin,
-                    play = () => { gfx.PlayWin(); ge.triggerwin = false; }
+                    action = () => { gfx.PlayWin(); ge.triggerwin = false; }
                 },
-                new SoundMap{
+                new Trigger{
                     wastriggered = () => ge.triggerscore,
-                    play = () => { gfx.PlayScore(); ge.triggerscore = false; }
+                    action = () => { gfx.PlayScore(); ge.triggerscore = false; }
                 },
-                new SoundMap{
+                new Trigger{
                     wastriggered = () => ge.triggerfail,
-                    play = () => { gfx.PlayFail(); ge.triggerfail = false; }
+                    action = () => { gfx.PlayFail(); ge.triggerfail = false; }
                 },
-                new SoundMap{
+                new Trigger{
                     wastriggered = () => ge.triggerroll,
-                    play = () => { gfx.PlayRoll(); ge.triggerroll = false; }
+                    action = () => { gfx.PlayRoll(); ge.triggerroll = false; }
                 }
             ],
             displays = [

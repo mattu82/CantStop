@@ -7,14 +7,17 @@
 //Nonfunctional:
 //update button to use dynamic colors (instead of using current hacky way)
 //Use list button for checklist and radio list
+//Move screens defined in Main to their own files
+//Add intellisense documentation
 //
 //Functional:
 //Add how to play screen
 //Add advanced option & palette screen (currently need to manually edit config file)
 //Add ability to configure object positions (ex option list, dice, buttons)
+//Change Font
+//Use texture graphics
 //Add player profiles
 //Add AI players
-//Use texture graphics
 //Implement xl version (for 5+ players, roll 3 dice)
 //Add ability to play online, possibly with twitch viewers
 
@@ -144,7 +147,7 @@ internal class Program
                     gfx.HandleResizing();
                     foreach (var b in Screens.Current.buttons.Where(b => b.isactive() && b.wasclicked())) b.onclicked();
                     gfx.PlayMusic();
-                    foreach (var s in Screens.Current.sounds.Where(s => s.wastriggered())) s.play();
+                    foreach (var t in Screens.Current.triggers.Where(t => t.wastriggered())) t.action();
                     Graphics.BeginFrame();
                     foreach (var d in Screens.Current.displays.Where(d => d.isactive())) d.draw();
                     foreach (var b in Screens.Current.buttons.Where(b => b.isactive())) b.draw();
